@@ -4,7 +4,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const Navbar = () => {
     return (
-        <nav className="flex justify-between px-4 py-4 items-center">
+        <nav className="flex justify-between px-4 py-4 items-center h-16">
             <Link href={"/"}>
                 <h1 className="text-2xl font-bold">Ebazon</h1>
             </Link>

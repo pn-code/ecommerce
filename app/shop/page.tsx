@@ -69,7 +69,7 @@ const dummyData = [
 
 const Shop = () => {
     return (
-        <main className="flex flex-col gap-5 sm:gap-0 bg-gray-100">
+        <main className="flex flex-col gap-5 sm:gap-0 bg-gray-100 h-[100vh]">
             {/* Top Searchbar */}
             <form className="flex justify-center py-2 bg-gray-400">
                 <input
@@ -79,7 +79,7 @@ const Shop = () => {
                 />
             </form>
             {/* Product Container */}
-            <section className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-4 items-center justify-center mx-[15%]">
+            <section className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 items-center justify-center mx-4">
                 {dummyData.map((product) => (
                     <ProductCard product={product} key={product.id} />
                 ))}
