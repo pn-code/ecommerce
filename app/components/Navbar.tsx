@@ -1,29 +1,25 @@
 import React from "react";
 import Link from "next/link";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const Navbar = () => {
     return (
-        <nav>
+        <nav className="flex justify-between px-4 py-4 items-center">
             <Link href={"/"}>
-                <div className="company-logo">
-                    <h1 className="logo-text">Ebazon</h1>
-                </div>
+                <h1 className="text-2xl font-bold">Ebazon</h1>
             </Link>
 
-            <ul className="navbar-directory">
-                <li>
-                    <Link href={"/"}>
-                        About
-                    </Link>
+            <ul className="flex gap-8 mt-1">
+                <li className="font-semibold text-lg hover:scale-105 duration-200 ease-in">
+                    <Link href={"/"}>Shop</Link>
                 </li>
-                <li>
-                    <Link href={"/"}>
-
-                        Shop
+                <li className="hover:scale-105 duration-200 ease-in">
+                    <Link className="relative" href={"/"}>
+                        <AiOutlineShoppingCart size={30} />
+                        <span className="absolute -top-3 -right-2 bg-red-500 text-white px-1 text-sm rounded-md">
+                            2
+                        </span>
                     </Link>
-                </li>
-                <li>
-                    <Link href={"/"}>My Cart : 0</Link>
                 </li>
             </ul>
         </nav>
