@@ -4,7 +4,7 @@ import Link from "next/link";
 const Navbar = () => {
     return (
         <nav>
-            <Link>
+            <Link href={"/"}>
                 <div className="company-logo">
                     <h1 className="logo-text">Ebazon</h1>
                 </div>
@@ -12,18 +12,18 @@ const Navbar = () => {
 
             <ul className="navbar-directory">
                 <li>
-                    <Link>
+                    <Link href={"/"}>
                         About
                     </Link>
                 </li>
                 <li>
-                    <Link>
+                    <Link href={"/"}>
 
                         Shop
                     </Link>
                 </li>
                 <li>
-                    <Link>My Cart : 0</Link>
+                    <Link href={"/"}>My Cart : 0</Link>
                 </li>
             </ul>
         </nav>
