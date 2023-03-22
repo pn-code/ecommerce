@@ -69,17 +69,17 @@ const dummyData = [
 
 const Shop = () => {
     return (
-        <main className="flex gap-[10%] h-[calc(100vh-64px)] bg-gray-100">
-            {/* Left Searchbar */}
-            <section className="hidden sm:inline bg-gray-500 px-4 pt-6">
+        <main className="flex flex-col gap-5 sm:gap-0 bg-gray-100">
+            {/* Top Searchbar */}
+            <form className="flex justify-center py-2 bg-gray-400">
                 <input
-                    className="rounded-md px-2 py-1"
+                    className="rounded-md px-2 py-1 w-[90%]"
                     type="text"
                     placeholder="search..."
                 />
-            </section>
+            </form>
             {/* Product Container */}
-            <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <section className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-4 items-center justify-center mx-[15%]">
                 {dummyData.map((product) => (
                     <ProductCard product={product} key={product.id} />
                 ))}
