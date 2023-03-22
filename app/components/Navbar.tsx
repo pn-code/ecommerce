@@ -10,7 +10,7 @@ const Navbar = () => {
             </Link>
 
             <ul className="flex gap-8 mt-1">
-                <li className="font-semibold text-lg hover:scale-105 duration-200 ease-in">
+                <li className="font-semibold text-lg hover:underline duration-200 ease-in">
                     <Link href={"/"}>Shop</Link>
                 </li>
                 <li className="hover:scale-105 duration-200 ease-in">
