@@ -72,15 +72,14 @@ const Cart = () => {
             <header className="px-4 text-xl font-bold">
                 <h1>Your Cart</h1>
             </header>
-            <main>
+            <main className="flex flex-col mb-10">
                 {/* Left section with all cart items */}
                 <section>
                     {dummyData.map((product) => (
                         <CartItemCard product={product} />
                     ))}
                 </section>
-                <section>{/* Render Cart Items Here */}</section>
-                {/* Right section with payment/proceed to checkout */}
+                <button className="bg-blue-500 text-white mx-4 text-xl font-bold rounded-md py-4 hover:underline">Checkout</button>
             </main>
         </>
     );
