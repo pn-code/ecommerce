@@ -69,17 +69,23 @@ const dummyData = [
 const Cart = () => {
     return (
         <>
-            <header className="px-4 text-xl font-bold">
-                <h1>Your Cart</h1>
-            </header>
-            <main className="flex flex-col mb-10">
+            <main className="flex flex-col mb-10 sm:flex-row">
                 {/* Left section with all cart items */}
-                <section>
+                <section className="sm:flex-[2]">
+                    <h1 className="text-2xl mx-4 font-bold">Your Cart</h1>
                     {dummyData.map((product) => (
                         <CartItemCard product={product} />
                     ))}
                 </section>
-                <button className="bg-blue-500 text-white mx-4 text-xl font-bold rounded-md py-4 hover:underline">Checkout</button>
+
+                {/* Cart Details */}
+                <section className="flex flex-col gap-4 w-full flex-1 text-center">
+                    <h1 className="text-2xl mx-4 font-bold">Cart Details</h1>
+                    <h2>Total: </h2>
+                    <button className="bg-blue-500 text-white text-xl font-bold rounded-md py-4 sm:py-2 hover:underline mx-4">
+                        Checkout
+                    </button>
+                </section>
             </main>
         </>
     );
