@@ -1,8 +1,12 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useCart } from "@/contexts/CartContext";
 
 const Navbar = () => {
+    const { value: cart } = useCart();
+
     return (
         <nav className="flex justify-between px-4 py-4 items-center h-16">
             <Link href={"/"}>
@@ -17,7 +21,7 @@ const Navbar = () => {
                     <Link className="relative" href={"/cart"}>
                         <AiOutlineShoppingCart size={30} />
                         <span className="absolute -top-3 -right-2 bg-red-500 text-white px-1 text-sm rounded-md">
-                            2
+                            {cart.length}
                         </span>
                     </Link>
                 </li>
