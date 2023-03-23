@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
     return (
-        <main className="flex flex-col gap-[10%] h-[72vh] mx-4 mt-[10%] items-center">
+        <main className="flex flex-col gap-[10%] h-[60vh] mx-4 mt-[16%] items-center">
             <header>
                 <h1 className="sm:text-center text-6xl font-bold">
                     The Future of Your Fitness is Yours to Shape.
