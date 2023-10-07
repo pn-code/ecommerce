@@ -10,7 +10,7 @@ export default function Navbar() {
     <nav className="w-full flex justify-between h-20 items-center px-4">
       <header className="flex gap-2 items-center">
         <Image className="p-1 rounded-full h-16 w-16" src={Logo} alt="Logo" height={100} width={100} />
-        <h1 className="text-xl font-semibold">Uncle Ben's Meat Factory</h1>
+        <h1 className="text-xl font-semibold">Uncle Ben&apos;s Meat Factory</h1>
       </header>
 
       {/* Searchbar */}
