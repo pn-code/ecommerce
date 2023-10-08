@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -7,7 +6,7 @@ import Navbar from "@/components/navigation/Navbar";
 import SubNavbar from "@/components/navigation/SubNavbar";
 import ModalProvider from "@/providers/ModalProvider";
 import "./globals.css";
-
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,8 +26,9 @@ export default function RootLayout({
                 <body className={inter.className}>
                     {/* <Navbar />
                     <SubNavbar /> */}
+                    <Toaster />
                     <ModalProvider />
-                    <main className="px-6 py-4">{children}</main>
+                    <main className="w-full h-full px-6 py-4">{children}</main>
                 </body>
             </html>
         </ClerkProvider>
