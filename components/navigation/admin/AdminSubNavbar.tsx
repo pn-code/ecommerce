@@ -12,7 +12,7 @@ const categories = ["dashboard", "collections", "products", "settings"];
 export default function AdminSubNavbar() {
   const path = usePathname();
   const currentPath = path.split("/")[2];
-  
+
   return (
     <ul className="flex gap-4 px-3 w-full bg-slate-100">
       {categories.map((category) => (
@@ -21,7 +21,7 @@ export default function AdminSubNavbar() {
             className={cn("", currentPath === category && "underline")}
             variant="link"
           >
-            <Link href={`/products/${category}`}>{category}</Link>
+            <Link href={`/admin/${category}`}>{category}</Link>
           </Button>
         </li>
       ))}
