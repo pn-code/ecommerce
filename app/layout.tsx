@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 
-import Navbar from "@/components/navigation/Navbar";
-import SubNavbar from "@/components/navigation/SubNavbar";
+import { ClerkProvider } from "@clerk/nextjs";
 import ModalProvider from "@/providers/ModalProvider";
 import "./globals.css";
-import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,11 +22,9 @@ export default function RootLayout({
         <ClerkProvider>
             <html lang="en">
                 <body className={inter.className}>
-                    {/* <Navbar />
-                    <SubNavbar /> */}
                     <Toaster />
                     <ModalProvider />
-                    <main className="w-full h-full px-6 py-4">{children}</main>
+                    {children}
                 </body>
             </html>
         </ClerkProvider>

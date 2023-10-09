@@ -1,8 +1,9 @@
+import Image from "next/image";
+
 import Logo from "@/public/meat_logo.svg";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import Image from "next/image";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Navbar() {
 
