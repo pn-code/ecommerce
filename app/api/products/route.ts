@@ -4,7 +4,7 @@ import { ProductSchema } from "@/schemas/ProductSchema";
 import { NextRequest, NextResponse } from "next/server";
 import { ZodError } from "zod";
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import { stripe } from "@/lib/stripeClient";
 
 export async function POST(req: NextRequest) {
   try {
