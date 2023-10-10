@@ -35,7 +35,7 @@ export default function CreateProductForm({
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<number>();
-  const [collectionId, setCollectionId] = useState("");
+  const [collectionId, setCollectionId] = useState<number | null>();
 
   const [loading, setLoading] = useState<boolean>(false);
 

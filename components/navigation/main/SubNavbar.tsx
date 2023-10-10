@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-const categories = ["beef", "pork", "chicken", "lamb", "specials"];
+const categories = ["beef", "pork", "chicken", "seafood"];
 
 export default function SubNavbar() {
   return (

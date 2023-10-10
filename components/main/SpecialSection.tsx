@@ -1,6 +1,4 @@
 import React from "react";
-import ProductCard from "../products/ProductCard";
-import { products } from "@/data/products";
 
 export default function SpecialSection() {
   return (
@@ -10,11 +8,6 @@ export default function SpecialSection() {
         <p className="text-sm text-slate-800">Buy now before items run out!</p>
       </header>
 
-      <div className="w-full flex gap-2 flex-wrap">
-        {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
-        ))}
-      </div>
     </div>
   );
 }

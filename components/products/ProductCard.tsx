@@ -1,14 +1,14 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "@/components/ui/card";
 
 interface ProductCardProps {
   id: number;
@@ -16,7 +16,7 @@ interface ProductCardProps {
   description: string;
   price: number;
   imageUrl: string;
-  categoryId: number;
+  collectionName: string;
 }
 
 export default function ProductCard({
@@ -25,17 +25,30 @@ export default function ProductCard({
   description,
   price,
   imageUrl,
-  categoryId,
+  collectionName,
 }: ProductCardProps) {
   return (
-    <Link href={`/products/${id}`} className="md:w-[300px] w-full">
-      <Card className="h-[200px] hover:bg-slate-100 cursor-pointer">
+    <Link href={`/products/product/${id}`} className="w-full md:w-[340px]">
+      <Card className="w-full h-[500px] hover:bg-slate-100 cursor-pointer flex flex-col justify-between">
         <CardHeader>
-          <CardTitle>{name}</CardTitle>
+          <div className="flex justify-center items-center">
+            <div className="w-full md:h-44 relative">
+              <Image
+                className="p-4 object-cover"
+                src={imageUrl}
+                alt={name}
+                fill
+              />
+            </div>
+          </div>
+          <CardTitle className="pb-1">{name}</CardTitle>
+          <CardDescription>{description}</CardDescription>
         </CardHeader>
-        <CardContent>
+
+        <CardContent className="flex flex-col items-end text-lg font-semibold justify-end">
           {/* <Image src={imageUrl} alt="" width={200} height={200}/> */}
-          <p>${price}</p>
+          <p>${price * .01} USD</p>
+          <p className="text-sm text-slate-700">{collectionName}</p>
         </CardContent>
       </Card>
     </Link>

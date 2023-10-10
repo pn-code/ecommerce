@@ -1,8 +1,14 @@
-import React from 'react'
+import ProductsSection from "@/components/products/ProductsSection";
+import { getProducts } from "@/helpers/products/getProducts";
 
-export default function ProductPage() {
-    
+export default async function ProductPage() {
+  const products = (await getProducts()) as Product[];
+
+  console.log(products)
+
   return (
-    <div>page</div>
-  )
+    <div>
+      <ProductsSection products={products} />
+    </div>
+  );
 }
