@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -14,24 +13,25 @@ interface AdminProductCardProps {
 
 export default function AdminProductCard({ product }: AdminProductCardProps) {
   return (
-    <Card className="flex">
-      <Image
-        className="p-4"
-        src={product.imageUrl}
-        alt={product.name}
-        height={100}
-        width={100}
-      />
+    <Card className="flex w-full flex-col md:flex-row">
+      <div className="flex justify-center items-center">
+        <div className="w-full h-52 md:w-36 md:h-36 relative">
+          <Image
+            className="p-4 object-scale-down"
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+          />
+        </div>
+      </div>
 
-      <CardHeader className="flex flex-col gap-1">
+      <CardHeader className="flex flex-col gap-1 w-full">
         <CardTitle className="flex justify-between">
           <h3>{product.name}</h3>
-          <div>${product.price * .01}.00 USD</div>
+          <div>${product.price * 0.01}.00 USD</div>
         </CardTitle>
         <CardDescription>{product.description}</CardDescription>
       </CardHeader>
-
-      <CardContent></CardContent>
     </Card>
   );
 }
