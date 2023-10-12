@@ -29,12 +29,12 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <Link href={`/products/product/${id}`} className="w-full md:w-[340px]">
-      <Card className="w-full h-[500px] hover:bg-slate-100 cursor-pointer flex flex-col justify-between">
+      <Card className="w-full h-full md:h-[500px] hover:bg-slate-100 cursor-pointer flex flex-col justify-between">
         <CardHeader>
-          <div className="flex justify-center items-center">
-            <div className="w-full md:h-44 relative">
+          <div className="flex justify-center items-center mb-3">
+            <div className="w-full h-64 md:h-44 relative">
               <Image
-                className="p-4 object-cover"
+                className="object-cover"
                 src={imageUrl}
                 alt={name}
                 fill
