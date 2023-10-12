@@ -8,8 +8,8 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  username String
+  id       String @unique
+  fullName String
   email    String @unique
 
   cart   Cart[]
@@ -39,7 +39,7 @@ model Product {
 
 model Cart {
   id         Int      @id @default(autoincrement())
-  user_id    Int
+  user_id    String
   product_id Int
   quantity   Int
   price      Decimal
@@ -51,7 +51,7 @@ model Cart {
 
 model Order {
   id           Int      @id @default(autoincrement())
-  user_id      Int
+  user_id      String
   created_at   DateTime @default(now())
   total_amount Decimal
 

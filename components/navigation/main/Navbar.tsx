@@ -1,16 +1,22 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import Logo from "@/public/meat_logo.svg";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
+import { UserButton } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
 
-export default function Navbar() {
+export default async function Navbar() {
+  const user = await currentUser();
   return (
     <nav className="w-full flex justify-between mb-2 md:mb-0 md:h-20 items-center px-4 flex-col md:flex-row">
       <header className="flex gap-2 items-center justify-center py-4">
-        <Button className="p-0 h-full rounded-full hover:bg-slate-300" variant="ghost">
+        <Button
+          className="p-0 h-full rounded-full hover:bg-slate-300"
+          variant="ghost"
+        >
           <Link href="/">
             <Image
               className="p-1 rounded-full h-16 w-16"
@@ -40,14 +46,22 @@ export default function Navbar() {
       {/* Content */}
       <ul className="flex gap-2 w-full md:w-fit justify-between">
         <li>
-          <Button className="w-[100px] md:w-full">Login</Button>
-        </li>
-        <li>
           <Button className="w-[100px] md:w-full">Orders</Button>
         </li>
         <li>
           <Button className="w-[100px] md:w-full">Cart</Button>
         </li>
+        {!user ? (
+          <li>
+            <Button className="w-[100px] md:w-full">
+              <Link href="/sign-in">Login</Link>
+            </Button>
+          </li>
+        ) : (
+          <li className="ml-2">
+            <UserButton afterSignOutUrl="/" />
+          </li>
+        )}
       </ul>
     </nav>
   );
