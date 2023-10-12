@@ -10,7 +10,7 @@ export default function MainLayout({
     <div>
       <Navbar />
       <SubNavbar />
-      <main className="p-6">{children}</main>
+      <main className="p-2 md:p-6">{children}</main>
     </div>
   );
 }

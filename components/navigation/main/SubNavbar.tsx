@@ -6,7 +6,7 @@ const categories = ["beef", "pork", "chicken", "seafood"];
 
 export default function SubNavbar() {
   return (
-    <ul className="flex gap-4 px-3 w-full bg-slate-100">
+    <ul className="flex gap-2 md:gap-4 px-3 w-full bg-slate-100">
       {categories.map((category) => (
         <li key={category}>
           <Button variant="link">
