@@ -7,6 +7,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       Int    @id @default(autoincrement())
+  username String
+  email    String @unique
+
+  cart   Cart[]
+  orders Order[]
+}
+
 model Collection {
   id       Int       @id @default(autoincrement())
   name     String
@@ -14,13 +23,49 @@ model Collection {
 }
 
 model Product {
-  id           Int        @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   name         String
   description  String?
   price        Float
   imageUrl     String?
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
   collectionId Int
-  collection   Collection @relation(fields: [collectionId], references: [id])
+
+  cart       Cart[]
+  OrderItem  OrderItem[]
+  collection Collection  @relation(fields: [collectionId], references: [id])
+}
+
+model Cart {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  product_id Int
+  quantity   Int
+  price      Decimal
+  created_at DateTime @default(now())
+
+  user    User    @relation(fields: [user_id], references: [id])
+  product Product @relation(fields: [product_id], references: [id])
+}
+
+model Order {
+  id           Int      @id @default(autoincrement())
+  user_id      Int
+  created_at   DateTime @default(now())
+  total_amount Decimal
+
+  orderItems OrderItem[]
+  user       User        @relation(fields: [user_id], references: [id])
+}
+
+model OrderItem {
+  id         Int     @id @default(autoincrement())
+  order_id   Int
+  product_id Int
+  quantity   Int
+  price      Decimal
+
+  order   Order   @relation(fields: [order_id], references: [id])
+  product Product @relation(fields: [product_id], references: [id])
 }
