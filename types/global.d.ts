@@ -14,3 +14,17 @@ interface Product {
   collectionId: number;
   collection: { name: string };
 }
+
+interface CartItem {
+  id: number;
+  user_id: string;
+  product_id: number;
+  quantity: number;
+  unit_price: number;
+  total_price: number;
+  created_at: Date;
+  product: {
+    name: string;
+    imageUrl: string;
+  };
+}

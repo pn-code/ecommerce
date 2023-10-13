@@ -1,27 +1,25 @@
-import { prisma } from "@/lib/db";
-import { currentUser } from "@clerk/nextjs";
 import React from "react";
 
-async function getCarts() {
-  try {
-    const user = await currentUser();
-
-    if (!user) throw new Error("Could not find user.");
-
-    const carts = await prisma.cart.findMany({
-      where: {
-        user_id: user.id,
-      },
-    });
-
-    return carts;
-  } catch (error: any) {
-    console.error(error.message);
-  }
-}
+import CartItem from "@/components/cart/CartItem";
+import { getCarts } from "@/helpers/carts/getCarts";
 
 export default async function CartPage() {
-  const carts = await getCarts();
-  console.log(carts);
-  return <div>page</div>;
+  const carts = (await getCarts()) as CartItem[];
+
+  if (!carts) {
+    throw new Error("Could not fetch carts");
+  }
+
+  return (
+    <div>
+      {/* Cart Wrapper */}
+      <section className="flex flex-col gap-2">
+        {carts.length === 0 ? (
+          <p>No items found in cart.</p>
+        ) : (
+          carts.map((cart) => <CartItem key={cart.id} cartItem={cart} />)
+        )}
+      </section>
+    </div>
+  );
 }
