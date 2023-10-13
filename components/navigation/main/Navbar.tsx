@@ -46,10 +46,14 @@ export default async function Navbar() {
       {/* Content */}
       <ul className="flex gap-2 w-full md:w-fit justify-between">
         <li>
-          <Button className="w-[100px] md:w-full">Orders</Button>
+          <Button className="w-[100px] md:w-full">
+            <Link href="/orders">Orders</Link>
+          </Button>
         </li>
         <li>
-          <Button className="w-[100px] md:w-full">Cart</Button>
+          <Button className="w-[100px] md:w-full">
+            <Link href="/cart">Cart</Link>
+          </Button>
         </li>
         {!user ? (
           <li>
