@@ -2,9 +2,11 @@
 
 import axios from "axios";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Button } from "../ui/button";
+
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -12,8 +14,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card";
-import { Input } from "../ui/input";
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 
 interface ProductDisplayProps {
   product: Product;
@@ -22,6 +24,8 @@ interface ProductDisplayProps {
 export default function ProductDisplay({ product }: ProductDisplayProps) {
   const [quantity, setQuantity] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
+
+  const router = useRouter();
 
   const createCart = async (productId: number) => {
     try {
@@ -33,6 +37,7 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
 
       if (res.status === 201) {
         toast.success(`${product.name} has been added to cart.`);
+        router.refresh();
       }
     } catch (error: any) {
       toast.error("We ran into an error. Please try again later.");
