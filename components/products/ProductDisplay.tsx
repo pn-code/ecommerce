@@ -1,7 +1,9 @@
 "use client";
 
+import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -19,8 +21,25 @@ interface ProductDisplayProps {
 
 export default function ProductDisplay({ product }: ProductDisplayProps) {
   const [quantity, setQuantity] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const addProductToCart = async () => {};
+  const createCart = async (productId: number) => {
+    try {
+      setLoading(true);
+
+      const cart = { product_id: productId, quantity };
+
+      const res = await axios.post("/api/carts", cart);
+
+      if (res.status === 201) {
+        toast.success(`${product.name} has been added to cart.`);
+      }
+    } catch (error: any) {
+      toast.error("We ran into an error. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="w-full h-full flex flex-col">
@@ -51,7 +70,7 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
                 Quantity:
               </label>
               <Input
-                className="w-12"
+                className="w-16"
                 onChange={(e) => setQuantity(Number(e.target.value))}
                 value={quantity}
                 id="quantity"
@@ -59,7 +78,9 @@ export default function ProductDisplay({ product }: ProductDisplayProps) {
               />
             </div>
 
-            <Button>Add To Cart</Button>
+            <Button disabled={loading} onClick={() => createCart(product.id)}>
+              Add To Cart
+            </Button>
           </CardFooter>
         </div>
       </Card>

@@ -38,12 +38,13 @@ model Product {
 }
 
 model Cart {
-  id         Int      @id @default(autoincrement())
-  user_id    String
-  product_id Int
-  quantity   Int
-  price      Decimal
-  created_at DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  user_id     String
+  product_id  Int
+  quantity    Int
+  unit_price  Int
+  total_price Int
+  created_at  DateTime @default(now())
 
   user    User    @relation(fields: [user_id], references: [id])
   product Product @relation(fields: [product_id], references: [id])
@@ -53,7 +54,7 @@ model Order {
   id           Int      @id @default(autoincrement())
   user_id      String
   created_at   DateTime @default(now())
-  total_amount Decimal
+  total_amount Int
 
   orderItems OrderItem[]
   user       User        @relation(fields: [user_id], references: [id])

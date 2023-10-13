@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 
 import ProductDisplay from "@/components/products/ProductDisplay";
-import ProductReviewsDisplay from "@/components/products/ProductReviewsDisplay";
 import { getProduct } from "@/helpers/products/getProduct";
 
 interface ProductPageProps {
@@ -21,11 +20,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <div>
-      {/* Product Display */}
       <ProductDisplay product={product} />
-
-      {/* Reviews */}
-      <ProductReviewsDisplay />
     </div>
   );
 }
