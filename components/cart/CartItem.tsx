@@ -52,16 +52,14 @@ export default function CartCard({ cartItem }: CartCardProps) {
       </div>
 
       <CardHeader className="flex flex-col gap-1 w-full">
-        <CardTitle className="flex justify-between">
-          <h3>{cartItem.product.name}</h3>
-          <div className="flex flex-col gap-2">
-            <div>${cartItem.total_price * 0.01}.00 USD</div>
-          </div>
+        <CardTitle className="flex justify-between gap-4">
+          <h3 className="w-44 md:w-[600px]">{cartItem.product.name}</h3>
+          <div className="mr-1.5">${cartItem.total_price * 0.01} USD</div>
         </CardTitle>
         <CardDescription className="flex justify-between items-center">
           Quantity: {cartItem.quantity}
           <div className="flex justify-end">
-            <Button onClick={deleteCart} variant="destructive">
+            <Button className="mr-0" onClick={deleteCart} variant="destructive">
               Remove
             </Button>
           </div>
