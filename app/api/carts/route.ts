@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db";
+import { stripe } from "@/lib/stripeClient";
 import { currentUser } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -19,7 +20,9 @@ export async function POST(req: NextRequest) {
       where: { id: data.product_id },
     });
 
-    if (!product) {
+    const stripeProduct = await stripe.products.retrieve(String(product.id));
+
+    if (!product || !stripeProduct) {
       return NextResponse.json("Unauthorized", { status: 401 });
     }
 
@@ -31,11 +34,13 @@ export async function POST(req: NextRequest) {
         quantity: data.quantity,
         unit_price: product.price,
         total_price: product.price * data.quantity,
+        price_id: stripeProduct.default_price,
       },
     });
 
     return NextResponse.json(cart, { status: 201 });
-  } catch (error) {
+  } catch (error: any) {
+    console.error(error.message);
     return NextResponse.json("Server Error", { status: 500 });
   }
 }

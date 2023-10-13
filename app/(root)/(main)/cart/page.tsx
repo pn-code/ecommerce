@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import CartCheckout from "@/components/cart/CartCheckout";
 
 export default async function CartPage() {
   const carts = (await getCarts()) as CartItem[];
@@ -43,7 +43,7 @@ export default async function CartPage() {
           <span className="text-slate-700">${cartTotal * 0.01}.00 USD</span>
         </CardContent>
         <CardFooter className="w-full">
-          <Button className="w-full">Check out</Button>
+          <CartCheckout carts={carts}/>
         </CardFooter>
       </Card>
     </div>

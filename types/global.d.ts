@@ -23,6 +23,7 @@ interface CartItem {
   unit_price: number;
   total_price: number;
   created_at: Date;
+  price_id: string;
   product: {
     name: string;
     imageUrl: string;

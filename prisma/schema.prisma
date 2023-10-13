@@ -44,6 +44,7 @@ model Cart {
   quantity    Int
   unit_price  Int
   total_price Int
+  price_id    String
   created_at  DateTime @default(now())
 
   user    User    @relation(fields: [user_id], references: [id])
