@@ -8,8 +8,7 @@ export default authMiddleware({
     "/",
     "/collections",
     "/products/:productName",
-    "/product",
-    "/product/:producId",
+    "/products/product/:productId",
   ],
 });
 
