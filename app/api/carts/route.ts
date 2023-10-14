@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
       where: { id: data.product_id },
     });
 
-    const stripeProduct = await stripe.products.retrieve(String(product.id));
+    const stripeProduct = await stripe.products.retrieve(String(product!.id));
 
     if (!product || !stripeProduct) {
       return NextResponse.json("Unauthorized", { status: 401 });
