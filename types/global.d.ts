@@ -29,3 +29,25 @@ interface CartItem {
     imageUrl: string;
   };
 }
+
+interface Order {
+  id: number;
+  user_id: string;
+  session_id: string;
+  created_at: Date;
+  total_amount: number;
+  payment_received: boolean;
+  delivery_address: null | string;
+  delivery_status: "PROCESSING" | "SHIPPING" | "DELIVERED";
+  delivered_at: null | Date;
+  orderItems: OrderItem[]
+}
+
+interface OrderItem {
+    id: number,
+    order_id: number,
+    product_id: number,
+    quantity: number,
+    price: number,
+    product: Product[]
+}
