@@ -2,9 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { createLineItems } from "@/helpers/carts/createLineItems";
 import { stripe } from "@/lib/stripeClient";
+import { prisma } from "@/lib/db";
+import { currentUser } from "@clerk/nextjs";
 
 export async function POST(req: NextRequest, res: NextResponse) {
     try {
+        const user = await currentUser();
+
+        if (!user) {
+            return NextResponse.json("Unauthorized", { status: 401 });
+        }
+
         const data = await req.json();
 
         const carts = data.carts as CartItem[];
@@ -25,6 +33,18 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 allowed_countries: ["US"],
             },
         });
+
+        const updateOrderWithSessionId = await prisma.order.update({
+            where: {
+                id: orderId,
+                user_id: user.id,
+            },
+            data: {
+                session_id: session.id
+            },
+        });
+
+        console.log(updateOrderWithSessionId)
 
         return NextResponse.json(session, { status: 201 });
     } catch (error: any) {
