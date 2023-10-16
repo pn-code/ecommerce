@@ -44,3 +44,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json("Server Error", { status: 500 });
   }
 }
+
+export async function DELETE() {
+  try {
+    const user = await currentUser();
+
+    if (!user) {
+      return NextResponse.json("Unauthorized", { status: 401 });
+    }
+
+    const deletedCarts = await prisma.cart.deleteMany({
+      where: {
+        user_id: user.id,
+      },
+    });
+
+    return NextResponse.json(deletedCarts, { status: 200 });
+  } catch (error: any) {
+    console.error("CARTS/DELETE: ", error.message);
+    return NextResponse.json("Server Error", { status: 500 });
+  }
+}
