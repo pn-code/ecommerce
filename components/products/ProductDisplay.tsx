@@ -16,15 +16,14 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { User } from "@clerk/nextjs/dist/types/server";
 import Link from "next/link";
 
 interface ProductDisplayProps {
     product: Product;
-    user: User;
+    userId: string | undefined;
 }
 
-export default function ProductDisplay({ product, user }: ProductDisplayProps) {
+export default function ProductDisplay({ product, userId }: ProductDisplayProps) {
     const [quantity, setQuantity] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -90,7 +89,7 @@ export default function ProductDisplay({ product, user }: ProductDisplayProps) {
                             />
                         </div>
 
-                        {!user ? (
+                        {!userId ? (
                             <Button
                                 variant="link"
                                 className="text-sm text-slate-600"
@@ -101,7 +100,7 @@ export default function ProductDisplay({ product, user }: ProductDisplayProps) {
                             </Button>
                         ) : (
                             <Button
-                                disabled={loading || !user}
+                                disabled={loading || !userId}
                                 onClick={() => createCart(product.id)}
                             >
                                 Add To Cart

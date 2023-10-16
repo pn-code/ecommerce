@@ -19,11 +19,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
   if (!product) {
     notFound();
   }
-  console.log(user)
 
   return (
     <div>
-      <ProductDisplay product={product} user={user}/>
+      <ProductDisplay product={product} userId={user?.id}/>
     </div>
   );
 }
