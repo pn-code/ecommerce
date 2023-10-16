@@ -12,11 +12,11 @@ export default function CartCheckout({ carts }: CartCheckoutProps) {
   const router = useRouter();
 
   const createCheckoutSession = async () => {
-    const ordersRes = await axios.post("/api/orders", carts);
+    const ordersRes = await axios.post("/api/orders");
 
     if (ordersRes.status !== 201) throw new Error("Something went wrong when creating new order.")
 
-    const checkoutRes = await axios.post("/api/checkout_sessions", carts);
+    const checkoutRes = await axios.post("/api/checkout_sessions", {orderId: ordersRes.data.id, carts});
     
     if (checkoutRes.status === 201) {
       router.push(checkoutRes.data.url)

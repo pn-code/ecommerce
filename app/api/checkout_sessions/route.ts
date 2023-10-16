@@ -5,13 +5,18 @@ import { stripe } from "@/lib/stripeClient";
 
 export async function POST(req: NextRequest, res: NextResponse) {
     try {
-        const carts = (await req.json()) as CartItem[];
+        const data = await req.json();
+
+        const carts = data.carts as CartItem[];
+        const orderId = data.orderId;
+
         const lineItems = createLineItems(carts);
 
         const HOST_URL = process.env.HOST_URL;
 
         // Create Checkout Sessions from body params.
         const session = await stripe.checkout.sessions.create({
+            client_reference_id: orderId,
             line_items: lineItems,
             mode: "payment",
             success_url: `${HOST_URL}/orders/?success=true`,
