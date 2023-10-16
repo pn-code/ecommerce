@@ -16,7 +16,7 @@ export default async function OrdersPage() {
                     <p>No items found in cart.</p>
                 ) : (
                     orders.map((order: any) => (
-                        <OrderCard key={orders.id} />
+                        <OrderCard key={order.id} order={order}/>
                     ))
                 )}
             </section>
