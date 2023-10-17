@@ -21,13 +21,18 @@ export default function OrderCard({ order }: OrderCardProps) {
 
   const orderDate = new Date(order.created_at);
   const paymentReceived = order.payment_received;
-  
+
   return (
     <Card className="flex w-full flex-col">
       <CardHeader className="flex flex-col gap-1 w-full">
         <CardTitle className="flex justify-between gap-4">
           <h3>Order #{order.id}</h3>
-          <p className="font-semibold">${order.total_amount * 0.01} USD</p>
+          <div className="flex gap-2 items-center">
+            <h3 className="text-xs bg-blue-500 py-0.5 px-3 rounded-full text-white">
+              {order.delivery_status}
+            </h3>
+            <p className="font-semibold">${order.total_amount * 0.01} USD</p>
+          </div>
         </CardTitle>
         <CardDescription className="flex justify-between items-center">
           {productsOrdered.join(", ")}
@@ -36,7 +41,6 @@ export default function OrderCard({ order }: OrderCardProps) {
 
       <CardFooter className="text-sm w-full flex md:justify-between md:items-end">
         <div className="font-semibold">
-          <h3>Status: {order.delivery_status}</h3>
           <p
             className={cn(
               "",

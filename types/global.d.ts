@@ -38,7 +38,7 @@ interface Order {
   total_amount: number;
   payment_received: boolean;
   delivery_address: null | string;
-  delivery_status: "PROCESSING" | "SHIPPING" | "DELIVERED";
+  delivery_status: "PROCESSING" | "SHIPPING" | "DELIVERED" | "CANCELLED";
   delivered_at: null | Date;
   orderItems: OrderItem[]
 }
