@@ -3,7 +3,7 @@ import { getOrders } from "@/helpers/orders/getOrders";
 
 export default async function OrdersPage() {
     const orders = (await getOrders()) as any;
-
+    
     return (
         <div className="w-full h-full flex flex-col gap-4">
             <header>

@@ -1,32 +1,32 @@
 import { Button } from "@/components/ui/button";
-import { updateOrder } from "@/helpers/orders/updateOrder";
+import { cancelOrder } from "@/helpers/orders/cancelOrder";
 import { currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
-interface SuccessOrderPageProps {
+interface CanceledOrderPageProps {
   params: {
     orderId: string;
   };
 }
 
-export default async function SuccessOrderPage({
+export default async function CanceledOrderPage({
   params,
-}: SuccessOrderPageProps) {
-  const orderId = Number(params.orderId);
+}: CanceledOrderPageProps) {
   const user = await currentUser();
-
   if (!user) return notFound();
 
-  const updatedOrder = await updateOrder(orderId);
+  const orderId = Number(params.orderId);
 
-  if (!updatedOrder) throw new Error("Could not update order");
+  const canceledOrder = await cancelOrder(orderId);
+
+  if (!canceledOrder) throw new Error("Could not cancel this order.");
 
   return (
     <div className="w-full h-full md:h-[calc(100vh-400px)] flex items-center justify-center flex-col gap-4">
       <p className="md:text-lg font-semibold w-full text-center">
-        Your order has been placed!
+        You have successfully canceled the order.
       </p>
 
       <div className="flex gap-2">
