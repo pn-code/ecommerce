@@ -11,8 +11,7 @@ const categories = [
     "dashboard",
     "collections",
     "products",
-    "billboard",
-    "settings",
+    "billboards",
 ];
 
 export default function AdminSubNavbar() {
@@ -34,11 +33,6 @@ export default function AdminSubNavbar() {
                     </Button>
                 </li>
             ))}
-            <li>
-                <Button variant="link">
-                    <Link href={`/`}>main site</Link>
-                </Button>
-            </li>
         </ul>
     );
 }

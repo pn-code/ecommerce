@@ -4,6 +4,7 @@ import Logo from "@/public/meat_logo.svg";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { GearIcon, RocketIcon } from "@radix-ui/react-icons";
+import { UserButton } from "@clerk/nextjs";
 
 export default function AdminNavbar() {
     return (
@@ -25,10 +26,7 @@ export default function AdminNavbar() {
             {/* Content */}
             <div className="flex gap-4">
                 <Button className="bg-indigo-700 hover:bg-indigo-800">
-                    <Link
-                        className="flex gap-1 items-center"
-                        href="/"
-                    >
+                    <Link className="flex gap-1 items-center" href="/">
                         <RocketIcon /> Main Site
                     </Link>
                 </Button>
@@ -40,6 +38,7 @@ export default function AdminNavbar() {
                         <GearIcon /> Settings
                     </Link>
                 </Button>
+                <UserButton afterSignOutUrl="/"/>
             </div>
         </nav>
     );
