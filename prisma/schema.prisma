@@ -22,6 +22,18 @@ model Collection {
   products Product[]
 }
 
+model Billboard {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  link        String
+  quantity    Int
+  price       Int
+  isShown     Boolean
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
 model Product {
   id           Int      @id @default(autoincrement())
   name         String

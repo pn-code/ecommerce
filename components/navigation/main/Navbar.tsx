@@ -14,15 +14,15 @@ export default async function Navbar() {
     const carts = await getCarts();
 
     return (
-        <nav className="w-full flex justify-between mb-2 md:mb-0 md:h-20 items-center px-4 flex-col md:flex-row">
-            <header className="flex gap-2 items-center justify-center py-4">
+        <nav className="w-full flex justify-between mb-2 md:mb-0 md:h-20 items-center px-1 md:px-4">
+            <header className="flex gap-1 md:gap-2 items-center py-1 md:py-4">
                 <Button
                     className="p-0 h-full rounded-full hover:bg-slate-300"
                     variant="ghost"
                 >
                     <Link href="/">
                         <Image
-                            className="p-1 rounded-full h-16 w-16"
+                            className="p-1 rounded-full h-10 w-10 md:h-16 md:w-16"
                             src={Logo}
                             alt="Logo"
                             height={100}
@@ -30,13 +30,16 @@ export default async function Navbar() {
                         />
                     </Link>
                 </Button>
-                <h1 className="text-lg md:text-xl font-semibold">
+                <h1 className="text-lg md:text-xl font-semibold hidden md:flex">
                     Uncle Ben&apos;s Meat Factory
+                </h1>
+                <h1 className="text-lg md:text-xl font-semibold md:hidden">
+                    UBMF
                 </h1>
             </header>
 
             {/* Searchbar */}
-            <form className="hidden md:flex gap--1">
+            <form className="hidden lg:flex gap-1">
                 <Input
                     className="w-full md:w-[500px]"
                     placeholder="Search All Products"
@@ -47,14 +50,14 @@ export default async function Navbar() {
             </form>
 
             {/* Content */}
-            <ul className="flex gap-2 w-full md:w-fit justify-between">
+            <ul className="flex gap-2 md:w-fit">
                 <li>
-                    <Button className="w-[100px] md:w-full">
+                    <Button className="md:w-full">
                         <Link href="/orders">Orders</Link>
                     </Button>
                 </li>
                 <li>
-                    <Button className="w-[100px] pr-6 md:w-full relative">
+                    <Button className="pr-6 md:w-full relative">
                         <Link href="/cart">Cart</Link>
                         {carts && (
                             <span className="absolute top-1 right-1 bg-red-500 w-3.5 h-3.5 rounded-full flex items-center justify-center text-xs">

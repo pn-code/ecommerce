@@ -7,29 +7,32 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const categories = ["dashboard", "collections", "products", "settings"];
+const categories = [
+    "dashboard",
+    "collections",
+    "products",
+    "billboards",
+];
 
 export default function AdminSubNavbar() {
-  const path = usePathname();
-  const currentPath = path.split("/")[2];
+    const path = usePathname();
+    const currentPath = path.split("/")[2];
 
-  return (
-    <ul className="flex gap-4 px-3 w-full bg-slate-100">
-      {categories.map((category) => (
-        <li key={category}>
-          <Button
-            className={cn("", currentPath === category && "underline")}
-            variant="link"
-          >
-            <Link href={`/admin/${category}`}>{category}</Link>
-          </Button>
-        </li>
-      ))}
-      <li>
-        <Button variant="link">
-          <Link href={`/`}>main site</Link>
-        </Button>
-      </li>
-    </ul>
-  );
+    return (
+        <ul className="flex gap-1 px-3 w-full bg-slate-100 flex-wrap">
+            {categories.map((category) => (
+                <li key={category}>
+                    <Button
+                        className={cn(
+                            "",
+                            currentPath === category && "underline"
+                        )}
+                        variant="link"
+                    >
+                        <Link href={`/admin/${category}`}>{category}</Link>
+                    </Button>
+                </li>
+            ))}
+        </ul>
+    );
 }
