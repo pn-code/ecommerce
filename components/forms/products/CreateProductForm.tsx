@@ -83,7 +83,6 @@ export default function CreateProductForm({
     toast.error("Image upload has failed. Please try again later.");
   };
 
-  console.log(collectionId)
   return (
     <form onSubmit={createProduct} className="flex flex-col gap-4">
       <div className="w-full flex flex-col gap-4">

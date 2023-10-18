@@ -48,8 +48,17 @@ export default function BillboardSlider() {
             </Button>
             <Image className="object-cover" src={data[index]} alt="" fill />
 
-            <div className="h-full flex flex-col text-slate-50 gap-8 justify-center items-center absolute p-2 w-full md:w-[30vw] lg:w-[24vw] bg-slate-900/80 top-0 right-0">
-                <h3 className="text-xl font-bold text-center md:w-left">Uncle Ben's Collections</h3>
+            <div className="h-full flex flex-col text-slate-50 justify-center items-center absolute p-2 w-full md:w-[30vw] lg:w-[24vw] bg-slate-900/80 top-0 right-0">
+                <h3 className="text-xl font-bold text-center md:w-left mb-2">
+                    Uncle Ben's Collections
+                </h3>
+
+                <p className="text-sm text-center text-slate-300 mb-6">
+                    Carefully sourced from the most esteemed cuts of meat
+                    provided by local, reputable farmers, our meat is
+                    consistently fresh and of the highest quality.
+                </p>
+
                 <Button variant="outline" className="text-lg px-7 py-6">
                     view our products
                 </Button>
