@@ -37,8 +37,6 @@ export default function BillboardSlider() {
         });
     };
 
-    console.log(index);
-
     return (
         <div className="relative w-full h-[calc(100vh-200px)]">
             <Button
@@ -50,8 +48,8 @@ export default function BillboardSlider() {
             </Button>
             <Image className="object-cover" src={data[index]} alt="" fill />
 
-            <div className="h-full flex flex-col text-slate-50 gap-8 justify-center items-center absolute p-2 md:w-[30vw] lg:w-[24vw] bg-slate-900/80 top-0 right-0">
-                <h3 className="text-xl font-bold">Uncle Ben's Collections</h3>
+            <div className="h-full flex flex-col text-slate-50 gap-8 justify-center items-center absolute p-2 w-full md:w-[30vw] lg:w-[24vw] bg-slate-900/80 top-0 right-0">
+                <h3 className="text-xl font-bold text-center md:w-left">Uncle Ben's Collections</h3>
                 <Button variant="outline" className="text-lg px-7 py-6">
                     view our products
                 </Button>
@@ -66,7 +64,7 @@ export default function BillboardSlider() {
             </Button>
 
             {/* Circles */}
-            <div className="absolute flex gap-1 bottom-4 left-[42%] text-white">
+            <div className="w-full absolute flex gap-1 bottom-4 left-[44%] text-white">
                 {data.map((billboard, idx) => (
                     <button
                         onClick={() => setIndex(idx)}
