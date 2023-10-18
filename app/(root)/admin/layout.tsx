@@ -1,11 +1,19 @@
 import AdminNavbar from "@/components/navigation/admin/AdminNavbar";
 import AdminSubNavbar from "@/components/navigation/admin/AdminSubNavbar";
+import { isCurrentUserAdmin } from "@/helpers/isCurrentUserAdmin";
+import { redirect } from "next/navigation";
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const isAdmin = await isCurrentUserAdmin();
+
+  if (!isAdmin) {
+    redirect("/");
+  }
+
   return (
     <div>
       <AdminNavbar />
