@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ZodError } from "zod";
 import { ProductSchema } from "@/schemas/ProductSchema";
+import "@uploadthing/react/styles.css";
 
 interface CreateProductFormProps {
   collections: Collection[];
