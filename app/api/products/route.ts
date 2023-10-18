@@ -8,7 +8,11 @@ import { stripe } from "@/lib/stripeClient";
 
 export async function POST(req: NextRequest) {
   try {
-    await isCurrentUserAdmin();
+    const admin = await isCurrentUserAdmin();
+
+    if (!admin) {
+        return NextResponse.json("Unauthorized", { status: 401 })
+    }
 
     // Validate product data
     const data = await req.json();

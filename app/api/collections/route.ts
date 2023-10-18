@@ -1,14 +1,17 @@
 import { isCurrentUserAdmin } from "@/helpers/isCurrentUserAdmin";
 import { prisma } from "@/lib/db";
 import { CollectionSchema } from "@/schemas/CollectionSchema";
-import { currentUser } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 import { ZodError } from "zod";
 
 export async function POST(req: NextRequest) {
     try {
         // Check for user and that user is our defined admin
-        await isCurrentUserAdmin();
+        const admin = await isCurrentUserAdmin();
+
+        if (!admin) {
+            return NextResponse.json("Unauthorized", { status: 401 })
+        }
 
         // Validate the received data
         const data = await req.json();
