@@ -50,7 +50,7 @@ export default function BillboardSlider() {
 
             <div className="h-full flex flex-col text-slate-50 justify-center items-center absolute p-2 w-full md:w-[30vw] lg:w-[24vw] bg-slate-900/80 top-0 right-0">
                 <h3 className="text-xl font-bold text-center md:w-left mb-2">
-                    Uncle Ben's Collections
+                    Uncle Ben&apos;s Collections
                 </h3>
 
                 <p className="text-sm text-center text-slate-300 mb-6">
