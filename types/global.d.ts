@@ -40,14 +40,25 @@ interface Order {
   delivery_address: null | string;
   delivery_status: "PROCESSING" | "SHIPPING" | "DELIVERED" | "CANCELLED";
   delivered_at: null | Date;
-  orderItems: OrderItem[]
+  orderItems: OrderItem[];
 }
 
 interface OrderItem {
-    id: number,
-    order_id: number,
-    product_id: number,
-    quantity: number,
-    price: number,
-    product: Product[]
+  id: number;
+  order_id: number;
+  product_id: number;
+  quantity: number;
+  price: number;
+  product: Product[];
+}
+
+interface Billboard {
+  id: number;
+  title: string;
+  description: string;
+  link: string;
+  isShown: true;
+  imageUrl: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
