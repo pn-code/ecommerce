@@ -16,7 +16,6 @@ interface BillboardSliderProps {
 }
 
 export default function BillboardSlider({ billboards }: BillboardSliderProps) {
-  console.log(billboards)
   const [index, setIndex] = useState(0);
 
   const handleChangeLeft = () => {
