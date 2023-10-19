@@ -61,4 +61,5 @@ interface Billboard {
   imageUrl: string;
   createdAt: Date;
   updatedAt: Date;
+  order: number
 }

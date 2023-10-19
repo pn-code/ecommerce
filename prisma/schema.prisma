@@ -29,6 +29,7 @@ model Billboard {
   link        String
   isShown     Boolean
   imageUrl    String
+  order       Int      @unique @default(autoincrement())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
