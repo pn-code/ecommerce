@@ -64,18 +64,23 @@ export default function BillboardCard({ billboard }: BillboardCardProps) {
 
       BillboardSchema.parse(updatedBillboard);
 
-      const res = await axios.post(
-        `/api/billboards/${billboard.id}`,
-        updateBillboard
-      );
+      const res = await axios.put(`/api/billboards`, updatedBillboard);
 
       if (res.status === 200) {
         toast.success(`Successfully updated ${updatedBillboard.title}!`);
+        setIsEditing(false);
         router.refresh();
       }
     } catch (error: any) {
-      console.error("BILLBOARD/CLIENT: ", error.message);
-      toast.error("Ran into an error, please try again later.");
+      if (error.response.status === 409) {
+        console.error("BILLBOARD/CLIENT: ", error.message);
+        toast.error(
+          "Please make sure updated order number does not conflict with existing numbers."
+        );
+      } else {
+        console.error("BILLBOARD/CLIENT: ", error.message);
+        toast.error("Ran into an error, please try again later.");
+      }
     } finally {
       setLoading(false);
     }
@@ -189,7 +194,7 @@ export default function BillboardCard({ billboard }: BillboardCardProps) {
                   </label>
                   <Textarea
                     id="description"
-                    className="w-full max-w-[1200px]"
+                    className="max-w-[900px]"
                     onChange={(e) => setNewDescription(e.target.value)}
                     value={newDescription}
                     aria-label="billboard description"
@@ -197,7 +202,7 @@ export default function BillboardCard({ billboard }: BillboardCardProps) {
                   />
                 </div>
               ) : (
-                <p className="max-w-[1200px]">{billboard.description}</p>
+                <p className="max-w-[900px]">{billboard.description}</p>
               )}
             </div>
 
@@ -217,8 +222,9 @@ export default function BillboardCard({ billboard }: BillboardCardProps) {
                       Is Shown:{" "}
                     </label>
                     <Select
-                      defaultValue={billboard.isShown ? "true" : "false"}
-                      onValueChange={(value) => setNewIsShown(Boolean(value))}
+                      onValueChange={(value) =>
+                        setNewIsShown(() => (value === "true" ? true : false))
+                      }
                     >
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Show Billboard" />
@@ -233,7 +239,7 @@ export default function BillboardCard({ billboard }: BillboardCardProps) {
                     </Select>
                   </div>
                 ) : (
-                  <p className="w-full">
+                  <p className="w-24">
                     is shown: {billboard.isShown ? "TRUE" : "FALSE"}
                   </p>
                 )}
