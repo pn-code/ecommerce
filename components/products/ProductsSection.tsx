@@ -8,17 +8,17 @@ interface ProductsSectionProps {
   products: Product[];
 }
 
-const validPaths = ["chicken", "beef", "chicken", "seafood"];
-
 export default function ProductsSection({ products }: ProductsSectionProps) {
   const path = usePathname().split("/")[2];
 
-  const filteredProducts = products.filter(
-    (product) => product.collection.name.toLowerCase() === path
-  );
+  const filteredProducts = !path
+    ? products
+    : products.filter(
+        (product) => product.collection.name.toLowerCase() === path
+      );
 
   return (
-    <section className="flex gap-4 flex-wrap">
+    <section className="w-[80%] h-full flex gap-4 flex-wrap">
       {!filteredProducts || filteredProducts.length === 0
         ? "There are no products as of this moment."
         : filteredProducts.map((product: Product) => (
