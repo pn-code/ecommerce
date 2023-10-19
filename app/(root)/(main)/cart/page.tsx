@@ -23,29 +23,35 @@ export default async function CartPage() {
   );
 
   return (
-    <div className="w-full h-full flex flex-col md:flex-row gap-4">
-      {/* Cart Wrapper */}
-      <section className="h-full w-full flex flex-col gap-2 md:flex-[3]">
-        {carts.length === 0 ? (
-          <p>No items found in cart.</p>
-        ) : (
-          carts.map((cart) => <CartItem key={cart.id} cartItem={cart} />)
-        )}
-      </section>
+    <div className="w-full h-full flex flex-col gap-4">
+      <header>
+        <h2 className="font-semibold md:text-lg">Your Cart</h2>
+      </header>
 
-      {/* Totals */}
-      <Card className="w-full h-full md:flex-1">
-        <CardHeader>
-          <h2 className="font-semibold">Cart Details</h2>
-        </CardHeader>
-        <CardContent>
-          <h3 className="font-semibold">Total: </h3>
-          <span className="text-slate-700">${cartTotal * 0.01}.00 USD</span>
-        </CardContent>
-        <CardFooter className="w-full">
-          <CartCheckout carts={carts}/>
-        </CardFooter>
-      </Card>
+      <div className="w-full h-full flex flex-col md:flex-row gap-4">
+        {/* Cart Wrapper */}
+        <section className="h-full w-full flex flex-col gap-2 md:flex-[3]">
+          {carts.length === 0 ? (
+            <p>No items found in cart.</p>
+          ) : (
+            carts.map((cart) => <CartItem key={cart.id} cartItem={cart} />)
+          )}
+        </section>
+
+        {/* Totals */}
+        <Card className="w-full h-full md:flex-1">
+          <CardHeader>
+            <h2 className="font-semibold">Cart Details</h2>
+          </CardHeader>
+          <CardContent>
+            <h3 className="font-semibold">Total: </h3>
+            <span className="text-slate-700">${cartTotal * 0.01}.00 USD</span>
+          </CardContent>
+          <CardFooter className="w-full">
+            <CartCheckout carts={carts} />
+          </CardFooter>
+        </Card>
+      </div>
     </div>
   );
 }
