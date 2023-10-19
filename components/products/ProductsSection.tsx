@@ -18,7 +18,7 @@ export default function ProductsSection({ products }: ProductsSectionProps) {
       );
 
   return (
-    <section className="w-[80%] h-full flex gap-4 flex-wrap">
+    <section className="w-full h-full flex gap-4 flex-wrap justify-center">
       {!filteredProducts || filteredProducts.length === 0
         ? "There are no products as of this moment."
         : filteredProducts.map((product: Product) => (
@@ -34,7 +34,4 @@ export default function ProductsSection({ products }: ProductsSectionProps) {
           ))}
     </section>
   );
-}
-function usePathName() {
-  throw new Error("Function not implemented.");
 }
