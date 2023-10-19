@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const Footer = () => {
   return (
     // Container
-    <div className="h-auto bg-slate-900 flex justify-center gap-12">
+    <div className="h-auto bg-slate-900 flex justify-center gap-12 mt-8">
       {/* Contact */}
       <div className="flex flex-col sm:flex-row flex-2 relative text-gray-200 md:gap-8 p-12 justify-between text-center sm:text-left">
         {/* Motto */}
