@@ -1,9 +1,13 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { BillboardSchema } from "@/schemas/BillboardSchema";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
+import axios from "axios";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { Button } from "../ui/button";
 
 import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
@@ -34,17 +38,52 @@ interface BillboardCardProps {
 export default function BillboardCard({ billboard }: BillboardCardProps) {
   const [isEditing, setIsEditing] = useState(false);
 
-  console.log(isEditing);
-
   const [newTitle, setNewTitle] = useState(billboard.title);
   const [newDescription, setNewDescription] = useState(billboard.description);
   const [newOrder, setNewOrder] = useState(billboard.order);
   const [newLink, setNewLink] = useState(billboard.link);
   const [newIsShown, setNewIsShown] = useState<boolean>(billboard.isShown);
 
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+
+  const updateBillboard = async () => {
+    try {
+      setLoading(true);
+
+      const updatedBillboard = {
+        id: billboard.id,
+        title: newTitle,
+        description: newDescription,
+        order: newOrder,
+        link: newLink,
+        isShown: newIsShown,
+        imageUrl: billboard.imageUrl,
+      } as Billboard;
+
+      BillboardSchema.parse(updatedBillboard);
+
+      const res = await axios.post(
+        `/api/billboards/${billboard.id}`,
+        updateBillboard
+      );
+
+      if (res.status === 200) {
+        toast.success(`Successfully updated ${updatedBillboard.title}!`);
+        router.refresh();
+      }
+    } catch (error: any) {
+      console.error("BILLBOARD/CLIENT: ", error.message);
+      toast.error("Ran into an error, please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Card>
-      <div className="flex w-full flex-col md:flex-row">
+      <div className="flex w-full flex-col md:flex-row justify-center md:justify-start md:items-center">
         <div className="flex justify-center items-center">
           <div className="w-full h-52 md:w-36 md:h-36 relative">
             <Image
@@ -212,7 +251,13 @@ export default function BillboardCard({ billboard }: BillboardCardProps) {
           >
             Cancel
           </Button>
-          <Button className="bg-green-500 hover:bg-green-600">Update</Button>
+          <Button
+            disabled={loading}
+            onClick={updateBillboard}
+            className="bg-green-500 hover:bg-green-600"
+          >
+            Update
+          </Button>
         </div>
       )}
     </Card>
