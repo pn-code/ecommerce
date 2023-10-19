@@ -11,7 +11,7 @@ export default function MainLayout({
     <div>
       <Navbar />
       <SubNavbar />
-      <main className="p-2 md:p-6">{children}</main>
+      <main className="p-2 md:p-6 md:min-h-[calc(100vh-300px)]">{children}</main>
       <Footer />
     </div>
   );
