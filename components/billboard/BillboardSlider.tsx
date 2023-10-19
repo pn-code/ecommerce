@@ -16,8 +16,6 @@ interface BillboardSliderProps {
 }
 
 export default function BillboardSlider({ billboards }: BillboardSliderProps) {
-  if (!billboards) return null;
-
   const [index, setIndex] = useState(0);
   const timeInterval = 10000;
 
@@ -48,6 +46,8 @@ export default function BillboardSlider({ billboards }: BillboardSliderProps) {
       clearInterval(timer);
     };
   }, [index]);
+
+  if (!billboards) return null;
 
   return (
     <div className="relative w-full h-screen md:h-[calc(100vh-144px)]">
