@@ -16,6 +16,7 @@ interface BillboardSliderProps {
 }
 
 export default function BillboardSlider({ billboards }: BillboardSliderProps) {
+  console.log(billboards)
   const [index, setIndex] = useState(0);
 
   const handleChangeLeft = () => {
@@ -36,8 +37,10 @@ export default function BillboardSlider({ billboards }: BillboardSliderProps) {
     });
   };
 
+  if (!billboards) return null;
+
   return (
-    <div className="relative w-full h-[calc(100vh-200px)]">
+    <div className="relative w-full h-screen md:h-[calc(100vh-144px)]">
       <Button
         onClick={handleChangeLeft}
         type="button"

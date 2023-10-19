@@ -36,8 +36,6 @@ export default function CreateBillboardForm() {
 
       const billboard = { title, description, link, isShown, imageUrl };
 
-      console.log(billboard);
-
       // If false, it will throw an error and get caught in catch block
       BillboardSchema.parse(billboard);
 
@@ -45,6 +43,7 @@ export default function CreateBillboardForm() {
 
       if (res.status === 201) {
         toast.success(`${billboard.title} product has been created!`);
+        router.refresh();
         router.push("/admin/billboards");
       }
     } catch (error: any) {

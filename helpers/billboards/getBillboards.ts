@@ -7,7 +7,11 @@ export async function getBillboards() {
 
     if (!admin) return false;
 
-    const billboards = await prisma.billboard.findMany();
+    const billboards = await prisma.billboard.findMany({
+      orderBy: {
+        order: "asc",
+      },
+    });
 
     return billboards;
   } catch (error: any) {
