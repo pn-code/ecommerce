@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -16,7 +16,10 @@ interface BillboardSliderProps {
 }
 
 export default function BillboardSlider({ billboards }: BillboardSliderProps) {
+  if (!billboards) return null;
+
   const [index, setIndex] = useState(0);
+  const timeInterval = 10000;
 
   const handleChangeLeft = () => {
     setIndex((prev) => {
@@ -36,7 +39,15 @@ export default function BillboardSlider({ billboards }: BillboardSliderProps) {
     });
   };
 
-  if (!billboards) return null;
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleChangeRight();
+    }, timeInterval);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [index]);
 
   return (
     <div className="relative w-full h-screen md:h-[calc(100vh-144px)]">
