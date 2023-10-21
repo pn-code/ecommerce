@@ -1,12 +1,13 @@
 import { prisma } from "@/lib/db";
 import { currentUser } from "@clerk/nextjs";
+import { NextResponse } from "next/server";
 
 export async function getOrders() {
   try {
     const user = await currentUser();
 
     if (!user) {
-      throw new Error("No user found.");
+      return NextResponse.json("Unauthorized", { status: 401 });
     }
 
     const orders = await prisma.order.findMany({
