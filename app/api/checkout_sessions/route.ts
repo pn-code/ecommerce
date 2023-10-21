@@ -44,8 +44,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
       },
     });
 
-    console.log(updateOrderWithSessionId);
-
     return NextResponse.json(session, { status: 201 });
   } catch (error: any) {
     return NextResponse.json("CHECKOUT_SESSIONS/POST: ", error.message);

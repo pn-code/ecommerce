@@ -46,16 +46,12 @@ export async function PUT(req: NextRequest) {
 
     BillboardSchema.parse(data);
 
-    console.log(data);
-
     // Find our billboard
     const currentBillboard = await prisma.billboard.findFirst({
       where: {
         id: data.id,
       },
     });
-
-    console.log(currentBillboard)
 
     if (!currentBillboard)
       return NextResponse.json("Bad Request", { status: 400 });
@@ -84,7 +80,6 @@ export async function PUT(req: NextRequest) {
       data,
     });
 
-    console.log(updatedBillboard)
     return NextResponse.json(updatedBillboard, { status: 200 });
   } catch (error: any) {
     console.error("BILLBOARDS/PUT: ", error.message);

@@ -53,8 +53,6 @@ export default function CreateProductForm({
       // If false, it will throw an error and get caught in catch block
       ProductSchema.parse(product);
 
-      console.log(product);
-
       const res = await axios.post("/api/products", product);
 
       if (res.status === 201) {
@@ -63,7 +61,7 @@ export default function CreateProductForm({
       }
     } catch (error: any) {
       if (error instanceof ZodError) {
-        console.log(error.message)
+        console.error(error.message)
         const errorJSON = JSON.parse(error.message);
         toast.error(errorJSON[0].message);
       } else {

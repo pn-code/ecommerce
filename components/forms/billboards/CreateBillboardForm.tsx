@@ -48,7 +48,7 @@ export default function CreateBillboardForm() {
       }
     } catch (error: any) {
       if (error instanceof ZodError) {
-        console.log(error.message);
+        console.error(error.message);
         const errorJSON = JSON.parse(error.message);
         toast.error(errorJSON[0].message);
       } else {

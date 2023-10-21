@@ -6,7 +6,6 @@ import { getProducts } from "@/helpers/products/getProducts";
 export default async function Home() {
   const billboards = (await getBillboards()) as Billboard[];
   const products = (await getProducts()) as Product[];
-  console.log(products);
 
   if (!billboards) throw new Error("Server could not load billboards.");
   if (!products) throw new Error("Server could not load products.");
