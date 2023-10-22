@@ -8,12 +8,11 @@ datasource db {
 }
 
 model User {
-  id       String @unique
+  id       String  @unique
+  email    String  @unique
   fullName String
-  email    String @unique
-
-  cart   Cart[]
-  orders Order[]
+  cart     Cart[]
+  orders   Order[]
 }
 
 model Collection {
@@ -28,25 +27,24 @@ model Billboard {
   description String
   link        String
   isShown     Boolean
-  imageUrl    String
-  order       Int      @unique @default(autoincrement())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  imageUrl    String
+  order       Int      @unique @default(autoincrement())
 }
 
 model Product {
-  id           Int      @id @default(autoincrement())
+  id           Int         @id @default(autoincrement())
   name         String
   description  String?
   price        Float
   imageUrl     String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
   collectionId Int
-
-  cart       Cart[]
-  OrderItem  OrderItem[]
-  collection Collection  @relation(fields: [collectionId], references: [id])
+  cart         Cart[]
+  OrderItem    OrderItem[]
+  collection   Collection  @relation(fields: [collectionId], references: [id])
 }
 
 model Cart {
@@ -54,39 +52,36 @@ model Cart {
   user_id     String
   product_id  Int
   quantity    Int
-  unit_price  Int
-  total_price Int
-  price_id    String
   created_at  DateTime @default(now())
-
-  user    User    @relation(fields: [user_id], references: [id])
-  product Product @relation(fields: [product_id], references: [id])
+  total_price Int
+  unit_price  Int
+  price_id    String
+  product     Product  @relation(fields: [product_id], references: [id])
+  user        User     @relation(fields: [user_id], references: [id])
 }
 
 model Order {
   id               Int            @id @default(autoincrement())
   user_id          String
-  session_id       String?
   created_at       DateTime       @default(now())
   total_amount     Int
-  payment_received Boolean        @default(false)
+  delivered_at     DateTime?
   delivery_address String?
   delivery_status  DeliveryStatus @default(PROCESSING)
-  delivered_at     DateTime?
-
-  orderItems OrderItem[]
-  user       User        @relation(fields: [user_id], references: [id])
+  payment_received Boolean        @default(false)
+  session_id       String?
+  user             User           @relation(fields: [user_id], references: [id])
+  orderItems       OrderItem[]
 }
 
 model OrderItem {
-  id         Int @id @default(autoincrement())
+  id         Int     @id @default(autoincrement())
   order_id   Int
   product_id Int
   quantity   Int
   price      Int
-
-  order   Order   @relation(fields: [order_id], references: [id])
-  product Product @relation(fields: [product_id], references: [id])
+  order      Order   @relation(fields: [order_id], references: [id])
+  product    Product @relation(fields: [product_id], references: [id])
 }
 
 enum DeliveryStatus {
