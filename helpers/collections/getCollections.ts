@@ -2,7 +2,11 @@ import { prisma } from "@/lib/db";
 
 export async function getCollections() {
   try {
-    const collections = await prisma.collection.findMany();
+    const collections = await prisma.collection.findMany({
+      include: {
+        products: true,
+      },
+    });
 
     return collections;
   } catch (error: any) {

@@ -1,6 +1,7 @@
 interface Collection {
   id: number;
   name: string;
+  products: Product[];
 }
 
 interface Product {
@@ -61,5 +62,5 @@ interface Billboard {
   imageUrl: string;
   createdAt: Date;
   updatedAt: Date;
-  order: number
+  order: number;
 }
