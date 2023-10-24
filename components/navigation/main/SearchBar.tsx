@@ -56,6 +56,11 @@ export default function SearchBar({ products, collections }: SearchBarProps) {
 
       {/* Suggestions */}
       <div className="w-full flex flex-col absolute top-10">
+        {suggestions.length === 0 && searchInput !== "" && (
+          <div className="px-3 bg-slate-50 border-b-2 border-slate-200 py-1 hover:bg-slate-100">
+            No Results Found
+          </div>
+        )}
         {suggestions.map((suggestion) => (
           <Link
             className="px-3 bg-slate-50 border-b-2 border-slate-200 py-1 hover:bg-slate-100"
