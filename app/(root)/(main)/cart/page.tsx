@@ -1,4 +1,4 @@
-import React from "react";
+import type { Metadata } from "next";
 
 import CartItem from "@/components/cart/CartItem";
 import { getCarts } from "@/helpers/carts/getCarts";
@@ -9,6 +9,10 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import CartCheckout from "@/components/cart/CartCheckout";
+
+export const metadata: Metadata = {
+  title: "Your Cart | Uncle Ben's Meat Factory ",
+};
 
 export default async function CartPage() {
   const carts = (await getCarts()) as CartItem[];

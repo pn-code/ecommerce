@@ -18,7 +18,7 @@ export default function ProductsSection({ products }: ProductsSectionProps) {
       );
 
   return (
-    <section className="w-full h-full flex gap-4 flex-wrap justify-center">
+    <section className="w-full h-full flex gap-4 flex-wrap justify-center md:justify-start">
       {!filteredProducts || filteredProducts.length === 0
         ? "There are no products as of this moment."
         : filteredProducts.map((product: Product) => (
