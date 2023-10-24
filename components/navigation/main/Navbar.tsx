@@ -9,12 +9,19 @@ import { UserButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs";
 import { getCarts } from "@/helpers/carts/getCarts";
 import { isCurrentUserAdmin } from "@/helpers/isCurrentUserAdmin";
+import SearchBar from "./SearchBar";
+import { getProducts } from "@/helpers/products/getProducts";
+import { getCollections } from "@/helpers/collections/getCollections";
 
 export default async function Navbar() {
   const user = await currentUser();
   const admin = await isCurrentUserAdmin();
 
   const carts = await getCarts();
+  const collections = (await getCollections()) as Collection[];
+  const products = collections.map((collection) => collection.products).flat();
+
+  if (!collections) throw new Error("Collections could not be loaded.");
 
   return (
     <nav className="w-full flex justify-between mb-2 md:mb-0 md:h-20 items-center px-1 md:px-4">
@@ -48,16 +55,7 @@ export default async function Navbar() {
         )}
       </header>
 
-      {/* Searchbar */}
-      <form className="hidden lg:flex gap-1">
-        <Input
-          className="w-full md:w-[500px]"
-          placeholder="Search All Products"
-        />
-        <Button>
-          <MagnifyingGlassIcon fontSize={100} />
-        </Button>
-      </form>
+      <SearchBar collections={collections} products={products} />
 
       {/* Content */}
       <ul className="flex gap-2 md:w-fit">
