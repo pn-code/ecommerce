@@ -40,6 +40,10 @@ export default function SearchBar({ products, collections }: SearchBarProps) {
     return false;
   };
 
+  const handleClickSearchItem = () => {
+    setSearchInput("");
+  };
+
   return (
     <div className="flex flex-col relative">
       <form className="hidden lg:flex gap-1">
@@ -55,7 +59,7 @@ export default function SearchBar({ products, collections }: SearchBarProps) {
       </form>
 
       {/* Suggestions */}
-      <div className="w-full flex flex-col absolute top-10">
+      <div className="w-full flex flex-col absolute top-10 z-20">
         {suggestions.length === 0 && searchInput !== "" && (
           <div className="px-3 bg-slate-50 border-b-2 border-slate-200 py-1 hover:bg-slate-100">
             No Results Found
@@ -63,11 +67,12 @@ export default function SearchBar({ products, collections }: SearchBarProps) {
         )}
         {suggestions.map((suggestion) => (
           <Link
+            onClick={handleClickSearchItem}
             className="px-3 bg-slate-50 border-b-2 border-slate-200 py-1 hover:bg-slate-100"
             key={suggestion.name + "_" + suggestion.id}
             href={
               isCollection(suggestion)
-                ? `/products/${suggestion.name}`
+                ? `/products/${suggestion.name.toLowerCase()}`
                 : `/products/product/${suggestion.id}`
             }
           >
