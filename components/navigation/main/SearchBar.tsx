@@ -22,9 +22,11 @@ export default function SearchBar({ products, collections }: SearchBarProps) {
       if (searchInput === "") {
         setSuggestions([]);
       } else {
-        const matches = possibleSearchResults.filter((result) =>
-          result.name.toLowerCase().includes(searchInput.toLowerCase())
-        );
+        const matches = possibleSearchResults
+          .filter((result) =>
+            result.name.toLowerCase().includes(searchInput.toLowerCase())
+          )
+          .slice(0, 5);
 
         setSuggestions(matches);
       }
