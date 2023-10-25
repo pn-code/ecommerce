@@ -31,7 +31,8 @@ export default function CreateCollectionsForm() {
 
       if (res.status === 201) {
         toast.success(`${collection.name} collection has been created!`);
-        router.push("/admin/dashboard");
+        router.push("/admin/collections");
+        router.refresh();
       }
     } catch (error: any) {
       if (error instanceof ZodError) {

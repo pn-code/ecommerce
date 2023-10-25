@@ -57,7 +57,8 @@ export default function CreateProductForm({
 
       if (res.status === 201) {
         toast.success(`${product.name} product has been created!`);
-        router.push("/admin/dashboard");
+        router.push("/admin/products");
+        router.refresh();
       }
     } catch (error: any) {
       if (error instanceof ZodError) {
