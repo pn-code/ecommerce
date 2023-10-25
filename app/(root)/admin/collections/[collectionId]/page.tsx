@@ -1,4 +1,4 @@
-import AdminProductCard from "@/components/admin/AdminProductCard";
+import AdminProductCard from "@/components/products/admin/AdminProductCard";
 import CollectionsDisplay from "@/components/collections/CollectionsDisplay";
 import ProductsSection from "@/components/products/ProductsSection";
 import { Button } from "@/components/ui/button";
