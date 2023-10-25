@@ -48,6 +48,8 @@ export default function AdminProductCard({ product }: AdminProductCardProps) {
             toast.error(
                 "Could not delete product at this time. Please try again later."
             );
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -94,6 +96,7 @@ export default function AdminProductCard({ product }: AdminProductCardProps) {
                                 </DropdownMenuItem>
                                 <DropdownMenuItem className="p-0">
                                     <button
+                                        disabled={loading}
                                         onClick={() =>
                                             deleteProduct(product.id)
                                         }
