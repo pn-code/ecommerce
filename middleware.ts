@@ -7,6 +7,7 @@ export default authMiddleware({
     "/collections",
     "/products/:productName",
     "/products/product/:productId",
+    "/products/search/:searchParam",
   ],
 });
 

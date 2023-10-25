@@ -6,16 +6,28 @@ import ProductCard from "@/components/products/ProductCard";
 
 interface ProductsSectionProps {
   products: Product[];
+  search?: Boolean;
 }
 
-export default function ProductsSection({ products }: ProductsSectionProps) {
+export default function ProductsSection({
+  products,
+  search,
+}: ProductsSectionProps) {
   const path = usePathname().split("/")[2];
 
-  const filteredProducts = !path
-    ? products
-    : products.filter(
-        (product) => product.collection.name.toLowerCase() === path
-      );
+  const getFilteredProducts = () => {
+    if (search === true) {
+      return products;
+    } else {
+      return !path
+        ? products
+        : products.filter(
+            (product) => product.collection.name.toLowerCase() === path
+          );
+    }
+  };
+
+  const filteredProducts = getFilteredProducts();
 
   return (
     <section className="w-full h-full flex gap-4 flex-wrap justify-center md:justify-start">
