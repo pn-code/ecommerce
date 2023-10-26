@@ -12,6 +12,7 @@ import { isCurrentUserAdmin } from "@/helpers/isCurrentUserAdmin";
 import SearchBar from "./SearchBar";
 import { getProducts } from "@/helpers/products/getProducts";
 import { getCollections } from "@/helpers/collections/getCollections";
+import { cn } from "@/lib/utils";
 
 export default async function Navbar() {
   const user = await currentUser();
@@ -60,13 +61,35 @@ export default async function Navbar() {
       {/* Content */}
       <ul className="flex gap-2 md:w-fit">
         <li>
-          <Button className="md:w-full">
-            <Link href="/orders">Orders</Link>
+          <Button
+            className={cn(
+              "md:w-full",
+              !user &&
+                "hidden"
+            )}
+          >
+            <Link
+              className={cn("", !user && "cursor-not-allowed")}
+              href="/orders"
+            >
+              Orders
+            </Link>
           </Button>
         </li>
         <li>
-          <Button className="pr-6 md:w-full relative">
-            <Link href="/cart">Cart</Link>
+          <Button
+            className={cn(
+              "pr-6 md:w-full relative",
+              !user &&
+                "hidden"
+            )}
+          >
+            <Link
+              className={cn("", !user && "cursor-not-allowed")}
+              href="/cart"
+            >
+              Cart
+            </Link>
             {carts && (
               <span className="absolute top-1 right-1 bg-red-500 w-3.5 h-3.5 rounded-full flex items-center justify-center text-xs">
                 {carts.length}
