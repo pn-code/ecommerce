@@ -10,6 +10,6 @@ export async function getCollections() {
 
     return collections;
   } catch (error: any) {
-    console.error("COLLECTIONS/GET:", error.message);
+    console.error("COLLECTIONS/GET: ", error.message);
   }
 }

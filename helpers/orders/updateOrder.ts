@@ -36,6 +36,6 @@ export async function updateOrder(orderId: number) {
 
     return updatedOrder;
   } catch (error: any) {
-    console.error("ORDERS/UPDATE: ", error.message);
+    console.error("ORDERS/PUT: ", error.message);
   }
 }

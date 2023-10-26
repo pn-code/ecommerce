@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(product, { status: 201 });
   } catch (error: any) {
     if (typeof ZodError) {
-      console.error(error);
+      console.error("USER ERROR: ", error.message);
       return NextResponse.json("USER ERROR", { status: 400 });
     } else {
       console.error("COLLECTIONS POST:", error.message);

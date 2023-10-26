@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(billboard, { status: 201 });
   } catch (error: any) {
     if (typeof ZodError) {
-      console.error(error);
+      console.error("BILLBOARD/POST: ", error);
       return NextResponse.json("USER ERROR", { status: 400 });
     } else {
       console.error("BILLBOARD/POST: ", error.message);

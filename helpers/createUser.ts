@@ -27,6 +27,6 @@ export async function createUser() {
 
     return userInDb;
   } catch (error: any) {
-    console.error(error.message);
+    console.error("USERS/POST: ", error.message);
   }
 }

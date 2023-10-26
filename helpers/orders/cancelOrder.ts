@@ -27,6 +27,6 @@ export async function cancelOrder(orderId: number) {
 
     return canceledOrder;
   } catch (error: any) {
-    console.error("ORDERS/UPDATE: ", error.message);
+    console.error("ORDERS/PUT: ", error.message);
   }
 }

@@ -9,6 +9,6 @@ export async function getProduct(id: number) {
     });
     return product;
   } catch (error: any) {
-    console.error(error.message);
+    console.error("PRODUCT/GET: ", error.message);
   }
 }

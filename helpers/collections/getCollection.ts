@@ -13,6 +13,6 @@ export async function getCollection(collectionId: number) {
 
     return collection;
   } catch (error: any) {
-    console.error("INDIVIDUAL COLLECTION/GET:", error.message);
+    console.error("COLLECTION/GET:", error.message);
   }
 }

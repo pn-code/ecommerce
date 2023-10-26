@@ -48,11 +48,11 @@ export default function CreateBillboardForm() {
             }
         } catch (error: any) {
             if (error instanceof ZodError) {
-                console.error(error.message);
+                console.error("BILLBOARDS/POST: ", error.message);
                 const errorJSON = JSON.parse(error.message);
                 toast.error(errorJSON[0].message);
             } else {
-                console.error(error.message);
+                console.error("BILLBOARDS/POST: ", error.message);
                 toast.error("We've run into an issue. Please try again later.");
             }
         } finally {

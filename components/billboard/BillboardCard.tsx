@@ -73,12 +73,12 @@ export default function BillboardCard({ billboard }: BillboardCardProps) {
       }
     } catch (error: any) {
       if (error.response.status === 409) {
-        console.error("BILLBOARD/CLIENT: ", error.message);
+        console.error("BILLBOARD/PUT: ", error.message);
         toast.error(
           "Please make sure updated order number does not conflict with existing numbers."
         );
       } else {
-        console.error("BILLBOARD/CLIENT: ", error.message);
+        console.error("BILLBOARD/PUT: ", error.message);
         toast.error("Ran into an error, please try again later.");
       }
     } finally {

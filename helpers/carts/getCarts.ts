@@ -23,6 +23,6 @@ export async function getCarts() {
 
     return carts;
   } catch (error: any) {
-    console.error(error.message);
+    console.error("CARTS/GET: ", error.message);
   }
 }

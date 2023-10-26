@@ -31,7 +31,7 @@ export default function CartCard({ cartItem }: CartCardProps) {
         router.refresh();
       }
     } catch (error: any) {
-      console.error(error.message);
+      console.error("CARTS/DELETE: ", error.message);
       toast.error("We ran into an error. Please try again later.");
     } finally {
       setLoading(false);

@@ -39,7 +39,7 @@ export default function CreateCollectionsForm() {
         const errorJSON = JSON.parse(error.message);
         toast.error(errorJSON[0].message);
       } else {
-        console.error(error.message);
+        console.error("COLLECTIONS/POST: ", error.message);
         toast.error("We've run into an issue. Please try again later.");
       }
     } finally {
