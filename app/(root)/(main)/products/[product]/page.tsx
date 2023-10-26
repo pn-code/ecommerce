@@ -20,8 +20,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const products = (await getProducts()) as Product[];
 
   return (
-    <div className="flex flex-col gap-4">
-      <h2 className="text-lg md:text-xl font-bold text-slate-800 flex justify-center md:justify-start">
+    <div className="w-full flex flex-col gap-4">
+      <h2 className="md:pl-10 text-lg md:text-xl font-bold text-slate-800 flex justify-center md:justify-start">
         {params.product.toUpperCase()} COLLECTION
       </h2>
       <ProductsSection products={products} />

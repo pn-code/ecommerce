@@ -20,12 +20,14 @@ export default async function SearchProductsPage({
     param.replaceAll("_", " ").toUpperCase();
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-4">
       <h2 className="text-lg md:text-xl font-bold text-slate-800 flex justify-center md:justify-start">
         Search Results for {decodeSearchParams(params.searchParam)}
       </h2>
 
-      <ProductsSection products={filteredProducts} search />
+      <div>
+        <ProductsSection products={filteredProducts} search />
+      </div>
     </div>
   );
 }
