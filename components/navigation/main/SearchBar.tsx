@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 interface SearchBarProps {
   products: Product[];
@@ -16,6 +18,8 @@ export default function SearchBar({ products, collections }: SearchBarProps) {
 
   const [searchInput, setSearchInput] = useState("");
   const [suggestions, setSuggestions] = useState<(Collection | Product)[]>([]);
+
+  const router = useRouter();
 
   useEffect(() => {
     const autoSuggest = () => {
@@ -46,16 +50,28 @@ export default function SearchBar({ products, collections }: SearchBarProps) {
     setSearchInput("");
   };
 
+  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (searchInput.trim() === "") {
+      toast.error("User must include a search phrase to search.");
+    } else {
+      // Handle string spaces
+      const modifiedStr = searchInput.toLowerCase().trim().split(" ").join("_");
+      router.push(`/products/search/${modifiedStr}`);
+      setSearchInput("")
+    }
+  };
+
   return (
     <div className="flex flex-col relative">
-      <form className="hidden lg:flex gap-1">
+      <form onSubmit={handleSearch} className="hidden lg:flex gap-1">
         <Input
           onChange={(e) => setSearchInput(e.target.value)}
           value={searchInput}
           className="w-full md:w-[500px]"
           placeholder="Search All Products"
         />
-        <Button>
+        <Button type="submit">
           <MagnifyingGlassIcon fontSize={100} />
         </Button>
       </form>

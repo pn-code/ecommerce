@@ -1,6 +1,5 @@
 import ProductsSection from "@/components/products/ProductsSection";
 import { getProducts } from "@/helpers/products/getProducts";
-import React from "react";
 
 interface SearchProductsPageProps {
   params: {
@@ -17,15 +16,16 @@ export default async function SearchProductsPage({
     product.name.toLowerCase().includes(params.searchParam.toLowerCase())
   );
 
-  console.log(filteredProducts)
+  const decodeSearchParams = (param: string) =>
+    param.replaceAll("_", " ").toUpperCase();
 
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-lg md:text-xl font-bold text-slate-800 flex justify-center md:justify-start">
-        Search Results for {params.searchParam}
+        Search Results for {decodeSearchParams(params.searchParam)}
       </h2>
 
-      <ProductsSection products={filteredProducts} search/>
+      <ProductsSection products={filteredProducts} search />
     </div>
   );
 }
