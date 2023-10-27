@@ -21,7 +21,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <div className="w-full flex flex-col gap-4">
-      <h2 className="md:pl-10 text-lg md:text-xl font-bold text-slate-800 flex justify-center md:justify-start">
+      <h2 className="md:pl-8 text-lg md:text-xl font-bold text-slate-800 flex justify-center md:justify-start">
         {params.product.toUpperCase()} COLLECTION
       </h2>
       <ProductsSection products={products} />

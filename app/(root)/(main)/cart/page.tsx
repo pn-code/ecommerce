@@ -27,7 +27,7 @@ export default async function CartPage() {
   );
 
   return (
-    <div className="w-full h-full flex flex-col gap-4">
+    <div className="w-full h-full flex flex-col gap-4 md:px-8">
       <header>
         <h2 className="font-semibold md:text-lg">Your Cart</h2>
       </header>
