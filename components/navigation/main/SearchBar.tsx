@@ -10,14 +10,11 @@ import toast from "react-hot-toast";
 
 interface SearchBarProps {
   products: Product[];
-  collections: Collection[];
 }
 
-export default function SearchBar({ products, collections }: SearchBarProps) {
-  const possibleSearchResults = [...collections, ...products];
-
+export default function SearchBar({ products }: SearchBarProps) {
   const [searchInput, setSearchInput] = useState("");
-  const [suggestions, setSuggestions] = useState<(Collection | Product)[]>([]);
+  const [suggestions, setSuggestions] = useState<Product[]>([]);
 
   const router = useRouter();
 
@@ -26,7 +23,7 @@ export default function SearchBar({ products, collections }: SearchBarProps) {
       if (searchInput === "") {
         setSuggestions([]);
       } else {
-        const matches = possibleSearchResults
+        const matches = products
           .filter((result) =>
             result.name.toLowerCase().includes(searchInput.toLowerCase())
           )
@@ -38,13 +35,6 @@ export default function SearchBar({ products, collections }: SearchBarProps) {
 
     autoSuggest();
   }, [searchInput]);
-
-  const isCollection = (item: any) => {
-    if (item.products) {
-      return true;
-    }
-    return false;
-  };
 
   const handleClickSearchItem = () => {
     setSearchInput("");
@@ -58,7 +48,7 @@ export default function SearchBar({ products, collections }: SearchBarProps) {
       // Handle string spaces
       const modifiedStr = searchInput.toLowerCase().trim().split(" ").join("_");
       router.push(`/products/search/${modifiedStr}`);
-      setSearchInput("")
+      setSearchInput("");
     }
   };
 
@@ -88,15 +78,9 @@ export default function SearchBar({ products, collections }: SearchBarProps) {
             onClick={handleClickSearchItem}
             className="px-3 bg-slate-50 border-b-2 border-slate-200 py-1 hover:bg-slate-100"
             key={suggestion.name + "_" + suggestion.id}
-            href={
-              isCollection(suggestion)
-                ? `/products/${suggestion.name.toLowerCase()}`
-                : `/products/product/${suggestion.id}`
-            }
+            href={`/products/product/${suggestion.id}`}
           >
-            {isCollection(suggestion)
-              ? `${suggestion.name} Collection`
-              : suggestion.name}
+            {suggestion.name}
           </Link>
         ))}
       </div>
