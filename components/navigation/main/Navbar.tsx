@@ -56,7 +56,7 @@ export default async function Navbar() {
         )}
       </header>
 
-      <SearchBar collections={collections} products={products} />
+      <SearchBar products={products} />
 
       {/* Content */}
       <ul className="flex gap-2 md:w-fit">
