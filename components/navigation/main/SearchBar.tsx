@@ -53,7 +53,7 @@ export default function SearchBar({ products }: SearchBarProps) {
   };
 
   return (
-    <div className="flex flex-col relative">
+    <div className="flex flex-col relative flex-1 items-center">
       <form onSubmit={handleSearch} className="hidden lg:flex gap-1">
         <Input
           onChange={(e) => setSearchInput(e.target.value)}
