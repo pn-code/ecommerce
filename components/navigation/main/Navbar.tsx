@@ -28,7 +28,7 @@ export default async function Navbar() {
     <nav className="w-full flex justify-between mb-2 md:mb-0 md:h-20 items-center px-1 md:px-10 flex-1">
       <header className="flex gap-1 md:gap-2 items-center py-1 md:py-4 flex-1">
         <Button
-          className="p-0 h-full rounded-full hover:bg-slate-300"
+          className="p-0 h-full rounded-full hover:bg-slate-200"
           variant="ghost"
         >
           <Link href="/">
