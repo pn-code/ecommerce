@@ -1,11 +1,8 @@
 import OrderList from "@/components/orders/admin/OrderList";
-import { Button } from "@/components/ui/button";
 import { getAllOrders } from "@/helpers/orders/getAllOrders";
-import Link from "next/link";
-import React from "react";
 
 export default async function AdminOrdersPage() {
-  const allOrders = await getAllOrders();
+  const allOrders = (await getAllOrders()) as any;
 
   if (!allOrders) throw new Error("Orders could not be loaded.");
 
