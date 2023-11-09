@@ -3,7 +3,7 @@ import { isCurrentUserAdmin } from "../isCurrentUserAdmin";
 
 export async function getAllOrders() {
   try {
-    const admin = isCurrentUserAdmin();
+    const admin = await isCurrentUserAdmin();
 
     if (!admin) {
       throw new Error("ALL ORDERS/GET: USER IS NOT ADMIN.");
