@@ -42,7 +42,7 @@ export default function OrderActions({ order }: OrderActionsProps) {
       <ul className="flex flex-col md:flex-row gap-2">
         {ORDER_STATUSES.map((status) => (
           <li
-            className={cn("border-2 p-2 w-full md:w-36", generateListStyles(status))}
+            className={cn("border-2 p-2 w-full md:w-36", generateListStyles(status as OrderStatus))}
             key={status}
           >
             {status}

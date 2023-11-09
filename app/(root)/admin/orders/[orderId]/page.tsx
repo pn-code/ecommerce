@@ -11,17 +11,17 @@ interface AdminOrderPageProps {
   };
 }
 
-export async function generateMetadata(
-  { params }: AdminOrderPageProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const orderId = Number(params.orderId);
-  const order = (await getOrder(orderId)) as any;
+// export async function generateMetadata(
+//   { params }: AdminOrderPageProps,
+//   parent: ResolvingMetadata
+// ): Promise<Metadata> {
+//   const orderId = Number(params.orderId);
+//   const order = (await getOrder(orderId)) as any;
 
-  return {
-    title: `Order #${order.id} - UBMF`,
-  };
-}
+//   return {
+//     title: `Order #${order.id} - UBMF`,
+//   };
+// }
 
 export default async function AdminOrderPage({ params }: AdminOrderPageProps) {
   const orderId = Number(params.orderId);
