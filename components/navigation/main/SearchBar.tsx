@@ -1,12 +1,13 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 interface SearchBarProps {
   products: Product[];
@@ -34,7 +35,7 @@ export default function SearchBar({ products }: SearchBarProps) {
     };
 
     autoSuggest();
-  }, [searchInput]);
+  }, [searchInput, products]);
 
   const handleClickSearchItem = () => {
     setSearchInput("");
