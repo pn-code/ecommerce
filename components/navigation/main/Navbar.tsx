@@ -25,15 +25,15 @@ export default async function Navbar() {
   if (!collections) throw new Error("Collections could not be loaded.");
 
   return (
-    <nav className="w-full flex justify-between mb-2 md:mb-0 md:h-20 items-center px-1 md:px-10 flex-1">
-      <header className="flex gap-1 md:gap-2 items-center py-1 md:py-4 flex-1">
+    <nav className="w-full flex justify-between mb-2 md:mb-0 md:h-20 items-center px-2 md:px-10 flex-1">
+      <header className="flex gap-1 md:gap-2 items-center py-1 md:py-4 md:flex-1 min-width-[100px]">
         <Button
           className="p-0 h-full rounded-full hover:bg-slate-200"
           variant="ghost"
         >
           <Link href="/">
             <Image
-              className="p-1 rounded-full h-10 w-10 md:h-16 md:w-16"
+              className="p-1 rounded-full h-12 w-12 md:h-16 md:w-16"
               src={Logo}
               alt="Logo"
               height={100}
@@ -44,7 +44,7 @@ export default async function Navbar() {
         <h1 className="text-lg md:text-xl font-semibold hidden md:flex">
           Uncle Ben&apos;s Meat Factory
         </h1>
-        <h1 className="text-lg md:text-xl font-semibold md:hidden">UBMF</h1>
+        <h1 className="text-lg font-semibold md:hidden">UBMF</h1>
 
         {admin && (
           <Button
