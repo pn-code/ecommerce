@@ -37,7 +37,7 @@ export default function SearchBar({ products }: SearchBarProps) {
     autoSuggest();
   }, [searchInput, products]);
 
-  const handleClickSearchItem = () => {
+  const clearInput = () => {
     setSearchInput("");
   };
 
@@ -49,19 +49,20 @@ export default function SearchBar({ products }: SearchBarProps) {
       // Handle string spaces
       const modifiedStr = searchInput.toLowerCase().trim().split(" ").join("_");
       router.push(`/products/search/${modifiedStr}`);
-      setSearchInput("");
+      clearInput();
     }
   };
 
   return (
     <div className="flex flex-col relative flex-1 items-start">
-      <form onSubmit={handleSearch} className="hidden lg:flex gap-1">
+      <form onSubmit={handleSearch} className="hidden lg:flex gap-1 relative">
         <Input
           onChange={(e) => setSearchInput(e.target.value)}
           value={searchInput}
           className="w-full md:w-[500px]"
           placeholder="Search All Products"
         />
+        <Button onClick={clearInput} type="button" variant="link" className="text-slate-400 absolute right-12 hover:text-slate-600 duration-100 ease-linear">X</Button>
         <Button type="submit">
           <MagnifyingGlassIcon fontSize={100} />
         </Button>
@@ -76,7 +77,7 @@ export default function SearchBar({ products }: SearchBarProps) {
         )}
         {suggestions.map((suggestion) => (
           <Link
-            onClick={handleClickSearchItem}
+            onClick={clearInput}
             className="px-3 bg-slate-50 border-b-2 border-slate-200 py-1 hover:bg-slate-100"
             key={suggestion.name + "_" + suggestion.id}
             href={`/products/product/${suggestion.id}`}
