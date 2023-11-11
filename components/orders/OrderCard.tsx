@@ -24,7 +24,7 @@ export default function OrderCard({ order }: OrderCardProps) {
 
   return (
     <Card className="flex w-full flex-col">
-      <CardHeader className="flex flex-col gap-1 w-full">
+      <CardHeader className="flex flex-col gap-1 w-full px-3 md:px-4">
         <CardTitle className="flex justify-between gap-4">
           <h3>Order #{order.id}</h3>
           <div className="flex gap-2 items-center">
@@ -47,7 +47,7 @@ export default function OrderCard({ order }: OrderCardProps) {
         </CardDescription>
       </CardHeader>
 
-      <CardFooter className="text-sm w-full flex md:justify-between md:items-end">
+      <CardFooter className="text-sm w-full flex flex-col md:flex-row items-start md:justify-between md:items-end px-3 md:px-4">
         <div className="font-semibold">
           <p
             className={cn(
