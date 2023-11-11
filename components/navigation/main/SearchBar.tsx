@@ -54,7 +54,7 @@ export default function SearchBar({ products }: SearchBarProps) {
   };
 
   return (
-    <div className="flex flex-col relative flex-1 items-center">
+    <div className="flex flex-col relative flex-1 items-start">
       <form onSubmit={handleSearch} className="hidden lg:flex gap-1">
         <Input
           onChange={(e) => setSearchInput(e.target.value)}
@@ -68,7 +68,7 @@ export default function SearchBar({ products }: SearchBarProps) {
       </form>
 
       {/* Suggestions */}
-      <div className="w-full flex flex-col absolute top-10 z-20">
+      <div className="hidden lg:flex w-[90%] flex-col absolute top-10 z-20">
         {suggestions.length === 0 && searchInput !== "" && (
           <div className="px-3 bg-slate-50 border-b-2 border-slate-200 py-1 hover:bg-slate-100">
             No Results Found
